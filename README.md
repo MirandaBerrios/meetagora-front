@@ -2,10 +2,10 @@
 
 Meetagora-frontend es una aplicación desarrollada en flutter sus dependencias son gestionadas son Dart.
 Para que el software pueda funcionar son necesarios ciertos requerimientos:
--Instalar flutter y Dart
--Algun ide de programación 
--Android studio
--a lo menos 15 gigas de almacenamiento en el disco que este pensando clonar el repositorio 
+- Instalar flutter y Dart
+- Algun ide de programación 
+- Android studio
+- a lo menos 15 gigas de almacenamiento en el disco que este pensando clonar el repositorio 
 
 ## Como partir con Meetagora FrontEnd
 
