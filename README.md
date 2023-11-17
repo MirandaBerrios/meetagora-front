@@ -1,29 +1,20 @@
 # meetagora-app
 
-A new Flutter project.
+Meetagora-frontend es una aplicación desarrollada en flutter sus dependencias son gestionadas son Dart.
+Para que el software pueda funcionar son necesarios ciertos requerimientos:
+-Instalar flutter y Dart
+-Algun ide de programación 
+-Android studio
+-a lo menos 15 gigas de almacenamiento en el disco que este pensando clonar el repositorio 
 
-## Getting Started
+## Como partir con Meetagora FrontEnd
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
-## Integration Tests
+Para comenzar a modificar el código puedes clonar en tu máquina local el proyecto a través del siguiente repositorio https://github.com/MirandaBerrios/meetagora-front , para posteriormente editarlo con el ide de programacion que mas te acomode, recomendamos visual studio code para el mismo.
 
-To test on a real iOS / Android device, first connect the device and run the following command from the root of the project:
+Ahora lo más importante es cómo hacer que el código se despliegue y proceder a probarlo en tiempo real, lo primero es verificar que las dependencias se hayan actualizado correctamente en tu máquina, lo segundo es eliminar posibles importaciones repetidas o que no se están utilizando ya que se crean al momento de buildear la aplicación, como tercer paso es ya haber establecido el emulador en android studio, para poder utilizarlo, recomendamos utilizar la versión tiramisú de android y dar por lo menos 1gb de espacio en el disco y 4 o mas gb de ram para el correcto funcionamiento.
 
-```bash
-flutter test integration_test/test.dart
-```
+Para correr el código nos vamos al archivo main.dart y colocamos run, esto debería abrir tu emulador y mostrar la aplicación en funcionamiento, ya el resto depende de ti.
 
-To test on a web browser, first launch `chromedriver` as follows:
-```bash
-chromedriver --port=4444
-```
+Puntos extras que abordar, la aplicación trabaja con varias páginas y modales que podrás ver en el código, además, la aplicación tiene variables app State que funcionan dentro de toda la aplicación, donde encontrarás la variable apiUrlStatment esta es pieza fundamental porque es el link con el que trabajan todas las conexiones a las API, de querer probar el ambiente de desarrollo de manera local deberás cambiar la ruta desde ese lugar,  por defecto se utiliza  la url que apunta al back end ya subido en el servidor, la url que encontrarás es la siguiente: https://backend-gkhesykiqa-tl.a.run.app, de querer trabajar de forma local deberá cambiarla por tu url de localhost y el puerto que hayas declarado en el back end.
 
-Then from the root of the project, run the following command:
-```bash
-flutter drive \
-  --driver=test_driver/integration_test.dart \
-  --target=integration_test/test.dart \
-  -d chrome
-```
 
-Find more information about running Flutter integration tests [here](https://docs.flutter.dev/cookbook/testing/integration/introduction#5-run-the-integration-test).
