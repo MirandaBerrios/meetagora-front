@@ -355,7 +355,7 @@ class CreateAnnouncementApiCall {
   "subjectSection": "${subjectSection}",
   "userId": ${userId},
   "body": "${body}",
-  "likeCount": <likeCount>,
+  "delayedTime": ${delayedTime},
   "titleAnnouncement": "${titleAnnouncement}",
   "category": "${category}",
   "isVisible": ${isVisible},

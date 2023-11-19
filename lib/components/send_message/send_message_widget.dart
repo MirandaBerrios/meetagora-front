@@ -670,7 +670,7 @@ class _SendMessageWidgetState extends State<SendMessageWidget> {
                                 nickname: FFAppState().nickname,
                                 userId: FFAppState().userId,
                                 isVisible: false,
-                                delayedTime: 0,
+                                delayedTime: _model.countControllerValue,
                               );
                               if ((_model.apiResultALumno?.succeeded ?? true)) {
                                 context.safePop();
