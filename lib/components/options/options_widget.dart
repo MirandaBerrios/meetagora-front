@@ -59,8 +59,6 @@ class _OptionsWidgetState extends State<OptionsWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: MediaQuery.sizeOf(context).width * 1.0,
-      height: MediaQuery.sizeOf(context).height * 1.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
@@ -77,14 +75,87 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                child: Text(
-                  'Opciones del perfil',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Proletarsk',
-                        fontSize: 25.0,
-                        useGoogleFonts: false,
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Opciones del perfil',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Proletarsk',
+                                  fontSize: 25.0,
+                                  useGoogleFonts: false,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FFButtonWidget(
+                            onPressed: () async {
+                              setState(() {
+                                FFAppState().token = '';
+                                FFAppState().firstName = '';
+                                FFAppState().secondName = '';
+                                FFAppState().lastName = '';
+                                FFAppState().institutionalEmail = '';
+                                FFAppState().isValidate = '';
+                                FFAppState().nickname = '';
+                                FFAppState().isTeacher = '';
+                                FFAppState().profileImage = '';
+                                FFAppState().rut = '';
+                                FFAppState().userId = 0;
+                                FFAppState().scheduleId = '';
+                                FFAppState().tokenSession = '';
+                                FFAppState().career = '';
+                                FFAppState().MessageNickname = '';
+                              });
+
+                              context.pushNamed('Login');
+                            },
+                            text: 'Cerrar sesión',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Proletarsk',
+                                    color: Colors.white,
+                                    useGoogleFonts: false,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -103,7 +174,7 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             width: MediaQuery.sizeOf(context).width * 0.6,
@@ -144,7 +215,6 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                                                     _model.textController1,
                                                 focusNode:
                                                     _model.textFieldFocusNode1,
-                                                autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   labelText:
@@ -227,96 +297,100 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                               ],
                             ),
                           ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                'Cambio de nombre de usuario'),
-                                            content: Text(
-                                                'Estas a punto a cambiar tu nombre de usuario '),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancelar'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: Text('Estoy de acuerdo'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              _model.apiResult =
-                                  await UpdateNicknameApiCall.call(
-                                nickname: _model.textController1.text,
-                                url: FFAppState().apiUrlStatement,
-                                token: FFAppState().token,
-                              );
-                              if ((_model.apiResult?.succeeded ?? true)) {
-                                await actions.successNotification(
-                                  context,
-                                  'Genial',
-                                  'Tu nombre de usuario se ha actualizado',
-                                  4,
-                                  () async {},
-                                  () async {},
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 15.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                var confirmDialogResponse = await showDialog<
+                                        bool>(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'Cambio de nombre de usuario'),
+                                          content: Text(
+                                              'Estas a punto a cambiar tu nombre de usuario '),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext, false),
+                                              child: Text('Cancelar'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext, true),
+                                              child: Text('Estoy de acuerdo'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ) ??
+                                    false;
+                                _model.apiResult =
+                                    await UpdateNicknameApiCall.call(
+                                  nickname: _model.textController1.text,
+                                  url: FFAppState().apiUrlStatement,
+                                  token: FFAppState().token,
                                 );
+                                if ((_model.apiResult?.succeeded ?? true)) {
+                                  await actions.successNotification(
+                                    context,
+                                    'Genial',
+                                    'Tu nombre de usuario se ha actualizado',
+                                    4,
+                                    () async {},
+                                    () async {},
+                                  );
 
-                                context.pushNamed('profile');
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text('Error '),
-                                      content: Text('Intenta nuevamente'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
+                                  context.pushNamed('profile');
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Error '),
+                                        content: Text('Intenta nuevamente'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
 
-                              setState(() {});
-                            },
-                            text: 'Actualizar',
-                            icon: Icon(
-                              Icons.edit_square,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Proletarsk',
-                                    color: Colors.white,
-                                    useGoogleFonts: false,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                setState(() {});
+                              },
+                              text: 'Actualizar',
+                              icon: Icon(
+                                Icons.edit_square,
+                                size: 15.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Proletarsk',
+                                      color: Colors.white,
+                                      useGoogleFonts: false,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
                         ],
