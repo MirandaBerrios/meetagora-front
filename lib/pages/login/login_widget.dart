@@ -634,6 +634,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                           LoginApiCall.careerName(
                                         (_model.apiResultLogin?.jsonBody ?? ''),
                                       ).toString();
+                                      FFAppState().scheduleId =
+                                          LoginApiCall.scheduleId(
+                                        (_model.apiResultLogin?.jsonBody ?? ''),
+                                      ).toString();
 
                                       context.goNamed(
                                         'homePage',
@@ -654,24 +658,51 @@ class _LoginWidgetState extends State<LoginWidget>
                                         },
                                       );
                                     } else {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title:
-                                                Text('Credenciales invalidas'),
-                                            content: Text(
-                                                'El correo o la contraseña no son validos'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
+                                      if (LoginApiCall.code(
+                                            (_model.apiResultLogin?.jsonBody ??
+                                                ''),
+                                          ) ==
+                                          401) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                  'Usuario no Autenticado'),
+                                              content: Text(
+                                                  'Porfavor revisa tu correo, de validacion antes de ingresar a Meetagora'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                  'Credenciales invalidas'),
+                                              content: Text(
+                                                  'El correo o la contraseña no son validos'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
                                     }
 
                                     setState(() {});

@@ -69,8 +69,6 @@ class _OptionsWidgetState extends State<OptionsWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
             child: Container(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: 50.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -576,7 +574,6 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                                       child: TextFormField(
                                         controller: _model.textController2,
                                         focusNode: _model.textFieldFocusNode2,
-                                        autofocus: true,
                                         autofillHints: [AutofillHints.password],
                                         obscureText:
                                             !_model.passwordVisibility1,
@@ -665,7 +662,6 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                                       child: TextFormField(
                                         controller: _model.textController3,
                                         focusNode: _model.textFieldFocusNode3,
-                                        autofocus: true,
                                         autofillHints: [AutofillHints.password],
                                         obscureText:
                                             !_model.passwordVisibility2,
@@ -754,7 +750,6 @@ class _OptionsWidgetState extends State<OptionsWidget> {
                                       child: TextFormField(
                                         controller: _model.textController4,
                                         focusNode: _model.textFieldFocusNode4,
-                                        autofocus: true,
                                         autofillHints: [AutofillHints.password],
                                         obscureText:
                                             !_model.passwordVisibility3,

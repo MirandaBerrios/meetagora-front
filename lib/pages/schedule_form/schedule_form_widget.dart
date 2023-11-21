@@ -503,7 +503,7 @@ class _ScheduleFormWidgetState extends State<ScheduleFormWidget> {
                             onPressed: () async {
                               setState(() {
                                 FFAppState().scheduleId =
-                                    '${FFAppState().rut.substring(0, 5)}233';
+                                    FFAppState().scheduleId;
                               });
                               _model.apiResult = await AddSubjectApiCall.call(
                                 url: FFAppState().apiUrlStatement,

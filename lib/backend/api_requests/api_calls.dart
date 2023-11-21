@@ -219,7 +219,7 @@ class GetAllSubjectApiCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: true,
-      cache: true,
+      cache: false,
     );
   }
 
@@ -400,7 +400,7 @@ class GetAllAnnouncementBySubjectApiCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: true,
-      cache: true,
+      cache: false,
     );
   }
 
@@ -672,7 +672,7 @@ class AsistenciaAlumnoApiCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: true,
-      cache: true,
+      cache: false,
     );
   }
 }
@@ -745,7 +745,7 @@ class AsistenciaProfesorApiCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: true,
-      cache: true,
+      cache: false,
     );
   }
 }
@@ -823,7 +823,7 @@ class LoadProfileApiCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: true,
-      cache: true,
+      cache: false,
     );
   }
 
